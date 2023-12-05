@@ -8,6 +8,12 @@ export const AppProvider = ({children}) => {
     const [newColorName, setNewColorName] = useState('');
     const [newColorCode, setNewColorCode] = useState('');
 
+    const isValidColorCode = (code) => {
+        const colorDiv = document.createElement('div');
+        colorDiv.style.backgroundColor = code;
+        return colorDiv.style.backgroundColor !== '';
+    };
+
     const addColor = () => {
         if (newColorName && newColorCode) {
             const lastGroup = colorGroups[colorGroups.length - 1];
@@ -56,7 +62,7 @@ export const AppProvider = ({children}) => {
     };
     
     return(
-       <AppContext.Provider value={{colorGroups,newColorCode,newColorName,setColorGroups,setNewColorCode,setNewColorName,addColor,editItem,deleteGroup}}>
+        <AppContext.Provider value={{ colorGroups, newColorCode, newColorName, setColorGroups, setNewColorCode, setNewColorName, addColor, editItem, deleteGroup,  isValidColorCode, }}>
         {children}
        </AppContext.Provider>
     )
